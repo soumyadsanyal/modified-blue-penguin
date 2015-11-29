@@ -81,9 +81,10 @@
             <div class="clear"></div>
             <footer>
                 <p>
-                <a href="https://github.com/jody-frankowski/blue-penguin">Blue Penguin</a> Theme
+                {% for title, link in SOCIAL%}
+                <a href="{{ link }}">{{ title }}</a>
                 &middot;
-                Powered by <a href="http://getpelican.com">Pelican</a>
+                {% endfor %}               
                  {% if FEED_ALL_ATOM %}
                 &middot;
                 <a href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" rel="alternate">Atom Feed</a>
