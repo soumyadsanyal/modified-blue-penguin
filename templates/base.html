@@ -23,6 +23,11 @@
     {% if FEED_RSS %}
     <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
     {% endif %}
+
+    {% if EXTRA_HEADER %}
+      {{ EXTRA_HEADER }}
+    {% endif %}
+
     {% if CATEGORY_FEED_ATOM and category %}
     <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Categories Atom Feed" />
     {% endif %}
@@ -40,6 +45,7 @@
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/print.css" type="text/css" media="print" />
     <meta name="generator" content="Pelican" />
     {% endblock head %}
+
 </head>
 <body>
     {% if DISPLAY_HEADER or DISPLAY_HEADER is not defined %}
@@ -85,6 +91,13 @@
                 <a href="{{ link }}">{{ title }}</a>
                 &middot;
                 {% endfor %}               
+
+                 {% if COPYRIGHT %}
+                &middot;
+		<p>{{ COPYRIGHT}}</p>
+                 {% endif %}
+
+
                  {% if FEED_ALL_ATOM %}
                 &middot;
                 <a href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" rel="alternate">Atom Feed</a>
@@ -93,6 +106,9 @@
                 &middot;
                 <a href="{{ SITEURL }}/{{ FEED_ALL_RSS }}" rel="alternate">Rss Feed</a>
                  {% endif %}
+
+
+
             </footer>
             {% endif %}
         </div>
